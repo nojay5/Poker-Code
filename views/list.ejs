@@ -1,0 +1,53 @@
+<%- include('partials/header') %>
+
+<main>
+    <div class="content-container">
+        <h2>Statistics</h2>
+        <div class="statistics-container">
+            
+            <p>Total Winnings: $<%= totalWinnings %></p>
+            <p>Hourly:  $<%= hourly %>/hr</p>
+            <p>Average Win: $<%= averageWin %></p>
+            <p>Sessions: <%= sessions %></p>
+            <p>Biggest Win: $<%= biggestWin %></p>
+            <p>Biggest Loss: $<%= biggestLoss %></p>
+            <p>All Time High: $<%= allTimeHigh %></p>
+           
+            
+            <p>Hours:  <%= totalHours %></p>
+            <p>Win Percentage: <%= winPercentage %>%</p>
+
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Buy-in</th>
+                        <th>Cash-out</th>
+                        <th>Session Profit</th>
+                        <th>Running Profit</th>
+                        <th>Hours</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.sort(function(a, b) { 
+                        return new Date(b.date) - new Date(a.date);
+                    }).forEach(function(row) { %>
+                    
+                        <tr>
+                            <td><%= new Date(row.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: '2-digit' }) %></td>
+                            <td>$<%= row.buyin %></td>
+                            <td>$<%= row.cashout %></td>
+                            <td>$<%= row.session_profit %></td>
+                            <td>$<%= row.running_profit %></td>
+                            <td><%= row.hours %></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,92 @@
+<%- include('partials/header') %>
+
+
+<main>
+    <div class="content-container">
+        <div class="form-container">
+            <h3>Add Winnings</h3>
+            <form action="/poker/add" method="POST">
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="buyin">Buy-in:</label>
+                    <input type="number" id="buyin" name="buyin" required>
+                </div>
+                <div class="form-group">
+                    <label for="cashout">Cashout:</label>
+                    <input type="number" id="cashout" name="cashout" required>
+                </div>
+                <div class="form-group">
+                    <label for="hours">Hours:</label>
+                    <input type="number" id="hours" name="hours" step="0.25" min="0" required>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Submit">
+                </div>
+                
+            </form>
+        </div>
+        <div class="chart-container">
+            <canvas id="profitChart"></canvas>
+        </div>
+    </div>
+</main>
+
+<%- include('partials/footer') %>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        try {
+            const response = await fetch('/poker/data');
+            if (!response.ok) {
+                throw new Error('Failed to fetch data');
+            }
+            const data = await response.json();
+            const formatDate = (dateString) => {
+            const dateObj = new Date(dateString);
+            return dateObj.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
+            };
+            const sessionIDs = data.map(entry => entry.sessionid);
+            const date = data.map(entry => formatDate(entry.date));
+            const runningProfits = data.map(entry => entry.running_profit);
+
+            const ctx = document.getElementById('profitChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: date,
+                    datasets: [{
+                        label: 'Running Profit',
+                        data: runningProfits,
+                        borderColor: 'rgba(0, 51, 102, 0.8)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Session '
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Running Profit'
+                            }
+                        }
+                    }
+                }
+            });
+        } catch (err) {
+            console.error('Error:', err);
+            // Handle errors, e.g., display an error message on the page
+        }
+    });
+</script>

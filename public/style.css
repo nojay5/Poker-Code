@@ -1,0 +1,235 @@
+:root {
+    --primary-color: #003366;      /* Dark blue for headers */
+    --secondary-color: #0066cc;    /* Medium blue for buttons */
+    --light-color: #e6f0ff;        /* Light blue for form container */
+    --background-color: #f0f8ff;   /* Background light blue */
+    --white: #ffffff;
+    --stats-bg: #cce0ff;  
+    --table-head: #003366; 
+    --even-rows: #f9f9f9;
+    --odd-rows:  #f2f2f2; 
+    --highlight: #e0e0e0;  /* Stats background */
+}
+
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* Clean, modern font */
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.icon-container {
+    margin: 10px 0;
+}
+
+.top-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 10px;
+    color: var(--white);
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-top: 2px solid #003870; /* Darker blue border for consistency */
+}
+
+.header-nav {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.header-nav li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.header-nav li a {
+    display: inline-block;
+    color: var(--white);
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.header-nav li a:hover {
+    background-color: #0078A0; /* Slightly darker blue for hover effect */
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    padding: 20px;
+}
+
+.statistics-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    background-color: var(--stats-bg);
+    border-radius: 8px;
+    font-weight: bold; /* Make text bold */
+    color: var(--white);
+    width: 80%;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for a modern look */
+}
+
+.statistics-container p {
+    flex: 0 1 160px;
+    margin: 0;
+    padding: 15px;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    text-align: center;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+}
+
+.statistics-container p:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.table-container {
+    width: 80%;
+    background-color: var(--light-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #c1c1c1; /* Light gray border */
+}
+
+th {
+    background-color: var(--table-head); /* Dark blue for headers */
+    color: var(--white);
+}
+
+tr:nth-child(even) {
+    background-color: var(--even-rows); /* Light gray for even rows */
+}
+
+tr:nth-child(odd) {
+    background-color: var(--odd-rows); /* Slightly darker gray for odd rows */
+}
+
+tr:hover {
+    background-color: #d0d0d0; /* Highlight color for rows */
+}
+
+h2 {
+    text-align: center;
+    color: var(--table-head); /* Dark blue for headings */
+}
+
+.chart-container,
+.form-container {
+    width: 85%;
+    background-color: var(--light-color);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 20px;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for consistency */
+}
+
+.form-container h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="date"] {
+    width: 50%; /* Set width to half */
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #c1c1c1; /* Light gray border */
+    border-radius: 4px;
+    text-align: center;
+    margin: 0 auto; /* Center the text boxes */
+    display: block;
+}
+
+.form-group input[type="submit"] {
+    width: 50%; /* Same width as input fields */
+    padding: 10px; /* Add padding for a consistent look */
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--secondary-color); /* Match the button color with the form fields */
+    color: var(--white);
+    cursor: pointer;
+    display: block; /* Ensure margin auto works for block-level elements */
+    margin: 0 auto; /* Center the submit button */
+    text-align: center; /* Center-align text within the button */
+}
+
+.form-group input[type="submit"]:hover {
+    background-color: #0078A0; /* Slightly darker blue for hover effect */
+}
