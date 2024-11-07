@@ -52,6 +52,7 @@
             const sessionIDs = data.map(entry => entry.sessionid);
             const date = data.map(entry => formatDate(entry.date));
             const runningProfits = data.map(entry => entry.running_profit);
+            const sessionProfits = data.map(entry => entry.session_profit); 
 
             const ctx = document.getElementById('profitChart').getContext('2d');
             new Chart(ctx, {
@@ -82,6 +83,7 @@
                             }
                         }
                     }
+                    
                 }
             });
         } catch (err) {

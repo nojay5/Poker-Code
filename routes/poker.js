@@ -133,7 +133,7 @@ router.get('/list', async (req, res) => {
   router.get('/data', async (req, res) => {
     try {
         const query = `
-            SELECT Date, Running_Profit
+            SELECT Date, Running_Profit, Session_Profit
             FROM poker_results
             ORDER BY Date;
         `;
